@@ -45,8 +45,7 @@ public class GithubActivity {
         });
 
 
-        // commit example
-        
+
         // String path = System.getProperty("user.home")+ File.separator +
         // ".githubActivity" + File.separator + "data" + File.separator +
         // "activity.json";
