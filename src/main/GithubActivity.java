@@ -17,48 +17,41 @@ import main.model.Event;
 public class GithubActivity {
     public static void main(String[] args) throws IOException {
 
-
-        
         URL url = new URL(String.format("https://api.github.com/users/%s/events", args[0]));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        
-        BufferedReader in = new BufferedReader(
-            new InputStreamReader(connection.getInputStream()));
 
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()));
 
         String inputLine;
 
         StringBuffer content = new StringBuffer();
 
-        while ((inputLine = in.readLine()) != null){
+        while ((inputLine = in.readLine()) != null) {
             content.append(inputLine);
         }
-
-
 
         in.close();
 
         Gson gson = new Gson();
 
-        Type eventListType = new TypeToken<List<Event>>(){}.getType();
+        Type eventListType = new TypeToken<List<Event>>() {
+        }.getType();
         List<Event> events = gson.fromJson(content.toString(), eventListType);
 
-
-        events.forEach(x->{
-             System.out.printf("%s to %s \n", x.type(), x.repo().name());
-            showMessage(x);
+        events.forEach(x -> {
+            System.out.printf("%s to %s \n", x.type(), x.repo().name());
         });
-        
 
-        //String path = System.getProperty("user.home")+ File.separator + ".githubActivity" + File.separator + "data" + File.separator + "activity.json";
+        // String path = System.getProperty("user.home")+ File.separator +
+        // ".githubActivity" + File.separator + "data" + File.separator +
+        // "activity.json";
         String outputPath = String.format("data\\%s.json", args[0]);
         BufferedWriter writer = new BufferedWriter(new FileWriter(outputPath));
         writer.write(content.toString());
         writer.close();
 
-        
     }
 
-    
 }
