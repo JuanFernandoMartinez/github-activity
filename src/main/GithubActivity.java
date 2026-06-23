@@ -46,6 +46,7 @@ public class GithubActivity {
 
 
         events.forEach(x->{
+             System.out.printf("%s to %s \n", x.type(), x.repo().name());
             showMessage(x);
         });
         
@@ -59,7 +60,5 @@ public class GithubActivity {
         
     }
 
-    public static void showMessage(Event event){ 
-        System.out.printf("%s to %s \n", event.type(), event.repo().name());
-    }
+    
 }
