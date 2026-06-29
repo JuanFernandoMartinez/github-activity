@@ -1,7 +1,11 @@
+
+
 # GitHub Activity
 
 Small Java utility that fetches and prints recent public GitHub events for a user.
 
+## roadmap.sh
+https://roadmap.sh/projects/github-user-activity
 ## Project Overview
 
 This project queries the GitHub Events API for a given username and prints a compact summary of each event (event type and repository name). It demonstrates a minimal Java app using `HttpURLConnection` and `Gson` to deserialize JSON into Java records.
